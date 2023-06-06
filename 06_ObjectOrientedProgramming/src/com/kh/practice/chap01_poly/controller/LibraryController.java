@@ -20,7 +20,7 @@ public class LibraryController {
 	}
 
 	public Book[] searchBook(String keyword) {
-		return book[];
+		return null;
 		
 	}
 	
