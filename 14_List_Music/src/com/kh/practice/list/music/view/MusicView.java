@@ -10,29 +10,9 @@ public class MusicView {
 	private Scanner sc = new Scanner(System.in);
 	private MusicController mc = new MusicController();
 
-/*	public void mainMenu2() {
-		int menu;
-			switch(menu) {
-			case 1:				addList();				break;
-			case 2:				addAtZero();			break;
-			case 3:				printAll();				break;
-			case 4:				searchMusic();			break;
-			case 5:				removeMusic();			break;
-			case 6:				setMusic();				break;
-			case 7:				ascTitle();				break;
-			case 8:				descSinger();			break;
-			case 9:
-				break;
-			default
-	}*/
-	
-	
-	
-	
 	
 	public void mainMenu() {
 		//System.out.println("디버깅 메시지 mainMenu");
-		//TODO
 //		******* 메인 메뉴 *******
 //		1. 마지막 위치에 곡 추가 // addList() 실행
 //		2. 첫 위치에 곡 추가 // addAtZero()
@@ -45,13 +25,14 @@ public class MusicView {
 //		9. 종료 // “종료” 출력 후 main()으로 리턴
 //		메뉴 번호 선택 : >> 입력 받음
 //		// 메뉴 화면 반복 실행 처리
-		int menu = 0; //비정상입력 경우를 위한 초기값
+		int menu = -1; //비정상입력 경우를 위한 초기값
 		do {
 			System.out.println("******* 메인 메뉴 *******");			System.out.println("1. 마지막 위치에 곡 추가");			System.out.println("2. 첫 위치에 곡 추가");			System.out.println("3. 전체 곡 목록 출력");			System.out.println("4. 특정 곡 검색");			System.out.println("5. 특정 곡 삭제");			
 			System.out.println("6. 특정 곡 정보 수정");			System.out.println("7. 곡명 오름차순 정렬");			System.out.println("8. 가수명 내림차순 정렬");			System.out.println("9. 종료 ");
+			System.out.println("0. 파일에 저장");
 			System.out.println("메뉴 번호 선택 : >>");
 			String menuStr = sc.nextLine();
-			menu =0;	//비정상입력 경우를 위한 초기값
+			menu =-1;	//비정상입력 경우를 위한 초기값
 			//비정상 입력 경우
 			try {
 				menu = Integer.parseInt(menuStr);//사용자 입력값을 menu에
@@ -60,6 +41,7 @@ public class MusicView {
 			}
 			//정상 입력 경우
 			switch(menu) {
+//TODO			case 0:				saveFile();				break;
 			case 1:				addList();				break;
 			case 2:				addAtZero();			break;
 			case 3:				printAll();				break;
@@ -152,12 +134,41 @@ public class MusicView {
 		}
 	}
 	public void setMusic() {
-		//TODO
+		System.out.println("****** 특정 곡 정보 수정 ******");
+		System.out.println("수정할 곡명을 입력해주세요.");
+		String title = sc.nextLine();
+		System.out.println("변경할 곡명을 입력해주세요.");
+		String newTitle = sc.nextLine();
+		System.out.println("변경할 가수명을 입력해주세요.");
+		String newSinger = sc.nextLine();
+		Music result = mc.setMusic(title, new Music(newTitle, newSinger));
+		if(result==null) {
+			System.out.println("수정할 곡이 없습니다.");
+		}else {
+			System.out.printf("000(%s, %s)의 값이 변경 되었습니다.\n", result.getTitle(), result.getSinger());
+		}
 	}
 	public void ascTitle() {
-		//TODO
+		System.out.println("****** 곡 명 오름차순 정렬 ******");
+//		int result = mc.ascTitle();
+		int result = mc.ascTitle2();
+		if(result>0) {
+			System.out.println("정렬 성공");
+		}else {
+			System.out.println("정렬 실패");
+		}
 	}
 	public void descSinger() {
+		System.out.println("****** 가수 명 내림차순 정렬 *****");
+//		int result = mc.descSinger();
+		int result = mc.descSinger2();
+		if(result>0) {
+			System.out.println("정렬 성공");
+		}else {
+			System.out.println("정렬 실패");
+		}
+	}
+	public void saveFile() {
 		//TODO
 	}
 
