@@ -1,10 +1,12 @@
 package com.kh.practice.list.music.controller;
 
-import java.awt.image.DataBufferDouble;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,9 +20,19 @@ public class MusicController {
 	//다형성 생성 > 다운캐스팅 가능
 	public MusicController() {
 		//music.txt파일에서 읽어서 list에 추가하여 초기화 함.
-		
-		
-		
+		String filePath="music.txt";
+		try (ObjectInputStream ois = 
+				new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)));
+				){
+			list = (List<Music>)ois.readObject();
+			System.out.println(list);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		//리스트에 초기 10곡 미리 입력해두기
 //		list.add(new Music("aa", "aaa"));
