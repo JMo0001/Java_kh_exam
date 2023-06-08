@@ -16,17 +16,25 @@ import com.kh.practice.list.music.model.vo.Music;
 public class MusicController {
 	private List<Music> list = new ArrayList<Music>();
 	//다형성 생성 > 다운캐스팅 가능
-	public MusicController() {//리스트에 초기 10곡 미리 입력해두기
-		list.add(new Music("aa", "aaa"));
-		list.add(new Music("bb", "bbb"));
-		list.add(new Music("cc", "ccc"));
-		list.add(new Music("dd", "ddd"));
-		list.add(new Music("aa", "eee"));
-		list.add(new Music("bb", "fff"));
-		list.add(new Music("cc", "aaa"));
-		list.add(new Music("dd", "bbb"));
-		list.add(new Music("ee", "ccc"));
-		list.add(new Music("ff", "ddd"));
+	public MusicController() {
+		//music.txt파일에서 읽어서 list에 추가하여 초기화 함.
+		
+		
+		
+		
+		//리스트에 초기 10곡 미리 입력해두기
+//		list.add(new Music("aa", "aaa"));
+//		list.add(new Music("bb", "bbb"));
+//		list.add(new Music("cc", "ccc"));
+//		list.add(new Music("dd", "ddd"));
+//		list.add(new Music("aa", "eee"));
+//		list.add(new Music("bb", "fff"));
+//		list.add(new Music("cc", "aaa"));
+//		list.add(new Music("dd", "bbb"));
+//		list.add(new Music("ee", "ccc"));
+//		list.add(new Music("ff", "ddd"));
+		
+		
 	}
 	public int addList(Music music) {
 		//****** 마지막 위치에 곡 추가 ******
@@ -169,25 +177,18 @@ public class MusicController {
 		int result = 0; // 0:저장실패, 1:저장성공
 		 
 		//filaPath에 list의 Music 객체들을 저장함.
-		FileOutputStream fos = null;
-		ObjectOutputStream oos = null;
-		BufferedOutputStream bos = null;
-		try {
-			oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)));
+		
+		try (ObjectOutputStream oos = 
+				new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)));
+		){
+			oos.writeObject(list);
+			oos.flush();
+			result=1;
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
 			e.printStackTrace();
-		}finally{
-			try {
-				if(fos!=null)fos.close();
-				if(bos!=null)bos.close();
-				if(oos!=null)oos.close();
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
 		}
-
 		return result;
 	}
 	

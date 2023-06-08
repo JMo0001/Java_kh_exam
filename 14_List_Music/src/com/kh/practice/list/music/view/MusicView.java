@@ -41,7 +41,7 @@ public class MusicView {
 			}
 			//정상 입력 경우
 			switch(menu) {
-//TODO			case 0:				saveFile();				break;
+			case 0:				saveFile();				break;
 			case 1:				addList();				break;
 			case 2:				addAtZero();			break;
 			case 3:				printAll();				break;
@@ -169,7 +169,16 @@ public class MusicView {
 		}
 	}
 	public void saveFile() {
-		//TODO
+		System.out.println("****** 곡정보를 파일에 저장 *****");
+		System.out.println("저장할 파일경로를 작성해 주세요.");
+		String failName = sc.nextLine();
+		
+		int result = mc.saveFile(failName);
+		if(result>0) {
+			System.out.println("저장 성공");
+		}else {
+			System.out.println("저장 실패");
+		}
 	}
 
 }
