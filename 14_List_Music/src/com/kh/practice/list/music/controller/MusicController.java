@@ -173,9 +173,7 @@ public class MusicController {
 		ObjectOutputStream oos = null;
 		BufferedOutputStream bos = null;
 		try {
-			fos = new FileOutputStream(filePath);
-			bos = new BufferedOutputStream(fos);
-			oos = new ObjectOutputStream(oos);
+			oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)));
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
