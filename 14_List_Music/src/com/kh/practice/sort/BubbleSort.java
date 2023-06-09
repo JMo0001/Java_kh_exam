@@ -25,9 +25,10 @@ public class BubbleSort {
 		
 		// 버블 정렬
 		int [] arr = new int[] {3,2,5,1,6,8};
-		System.out.print(Arrays.toString(arr));
+		System.out.println(Arrays.toString(arr));
 		//배열 ==> List
 //		System.out.println(Arrays.asList(arr));
+		
 		for(int ar : arr) {
 			System.out.print(ar);
 		}
