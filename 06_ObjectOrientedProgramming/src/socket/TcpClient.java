@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class TcpClient {
 	public void client01(String ip, int port) {//서버 접속용 ip, port
@@ -34,12 +35,30 @@ public class TcpClient {
 			
 			String sendMsg = null;
 			while(true) {
+				System.out.println("메시지 >> ");
+				sendMsg = stdIn.readLine();
+				System.out.println(sendMsg);
 				
-			}catch(){
+				pw.print(sendMsg);
+				pw.flush();
 				
+				String gotMsg = br.readLine();
+				System.out.println("서버로부터의 메시지 : "+gotMsg);
+				}
+			}catch(UnknownHostException e){
+				e.printStackTrace();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					if(pw!=null)pw.close();
+					if(br!=null)br.close();
+					if(out!=null)out.close();
+					if(in!=null)in.close();
+					if(socket!=null)socket.close();
+				}catch(IOException e) {
+					e.printStackTrace();
 			}
 		}
-		
 	}
-
 }
