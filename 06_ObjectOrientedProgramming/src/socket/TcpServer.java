@@ -24,6 +24,7 @@ public class TcpServer {
 			while(true) {//클라이언트 접속 대기
 				System.out.println("접속 대기중");
 				sc = ss.accept();//접속 요청 수락
+				System.out.println("접속 수락");
 				
 				in = sc.getInputStream();//입력 스트림
 				out = sc.getOutputStream();//출력 스트림
